@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      width: 100vw;
+    }
+
+    .container-content {
+      width: 200px;
+      overflow-y: auto;
+    }
+
+    .tracking {
+      position: fixed;
+      top: 0;
+      right: 0;
+      padding: 30px;
+      box-shadow: -5px -5px 15px 5px #ccc;
+    }
+
+    .tracking .active {
+      color: red;
+    }
+
+    .tracking h4 {
+      margin-left: 12px;
+    }
+
+    .flex {
+      display: flex;
+      height: 50px;
+    }
+
+    .container-maker {
+      display: flex;
+      height: 100%;
+      width: 30px;
+    }
+
+    .container-maker .marker,
+    .marker-horizontal,
+    .marker-verticle {
+      background: coral;
+    }
+
+    .container-maker .marker {
+      width: 3px;
+      height: 0%;
+      transition: height ease-in-out 1s;
+    }
+
+    .container-maker .marker-horizontal {
+      background: coral;
+      height: 3px;
+    }
+    
+    .container-maker .marker-verticle {
+      width: 3px;
+      background: coral;
+      margin-left: 100%;
+    }
+    
+    .marker-horizontal-show {
+      width: 0px;
+      animation: growUpHorizontal 0.5s ease-in-out forwards;
+    }
+    
+    .marker-horizontal-hide {
+      width: calc(100% + 3px);
+      animation: growDownHorizontal 0.5s ease-in-out 0.5s forwards;
+    }
+    
+    .marker-vertical-show {
+      height: 0;
+      animation: growUpVertical 0.5s ease-in-out 0.5s forwards;
+    }
+    
+    .marker-vertical-hide {
+      height:  100%;
+      animation: growDownVertical 0.5s ease-in-out forwards;
+    }
+
+    .active .marker {
+      height: 100%;
+    }
+
+    @keyframes growUpHorizontal {
+      0% {
+        width: 0px;
+      }
+      100% {
+        width: calc(100% + 3px);
+      }
+    }
+    
+    @keyframes growDownHorizontal {
+      0% {
+        width: calc(100% + 3px);
+      }
+      100% {
+        width: 0;
+      }
+    }
+    
+    @keyframes growUpVertical {
+      0% {
+        height: 0;
+      }
+      100% {
+        height: 100%;
+      }
+    }
+    
+    @keyframes growDownVertical {
+      0% {
+        height: 100%;
+      }
+      100% {
+        height: 0;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="container-content">
+    <section id="section-1">
+      <h1>Add React to an Existing Project</h1>
+      <p>If you want to add some interactivity to your existing project, you don’t have to rewrite it in React. Add
+        React
+        to your existing stack, and render interactive React components anywhere.</p>
+      <p>
+        Note
+        You need to install Node.js for local development. Although you can try React online or with a simple HTML page,
+        realistically most JavaScript tooling you’ll want to use for development requires Node.js.
+      </p>
+    </section>
+    <section id="section-2">
+      <h1>Using React for an entire subroute of your existing website</h1>
+      <p>Let’s say you have an existing web app at example.com built with another server technology (like Rails), and
+        you
+        want to implement all routes starting with example.com/some-app/ fully with React.
+
+        Here’s how we recommend to set it up:
+
+        Build the React part of your app using one of the React-based frameworks.
+        Specify /some-app as the base path in your framework’s configuration (here’s how: Next.js, Gatsby).
+        Configure your server or a proxy so that all requests under /some-app/ are handled by your React app.
+        This ensures the React part of your app can benefit from the best practices baked into those frameworks.
+
+        Many React-based frameworks are full-stack and let your React app take advantage of the server. However, you can
+        use the same approach even if you can’t or don’t want to run JavaScript on the server. In that case, serve the
+        HTML/CSS/JS export (next export output for Next.js, default for Gatsby) at /some-app/ instead.</p>
+    </section>
+    <section id="section-3">
+      <h1>Using React for a part of your existing page </h1>
+      <p>Let’s say you have an existing page built with another technology (either a server one like Rails, or a client
+        one like Backbone), and you want to render interactive React components somewhere on that page. That’s a common
+        way to integrate React—in fact, it’s how most React usage looked at Meta for many years!
+        You can do this in two steps:
+        Set up a JavaScript environment that lets you use the JSX syntax, split your code into modules with the import /
+        export syntax, and use packages (for example, React) from the npm package registry.
+        Render your React components where you want to see them on the page.
+        The exact approach depends on your existing page setup, so let’s walk through some details
+      </p>
+      <section id="section-3-1">
+        <h3>Step 1: Set up a modular JavaScript environment</h3>
+        <p>A modular JavaScript environment lets you write your React components in individual files, as opposed to
+          writing all of your code in a single file. It also lets you use all the wonderful packages published by other
+          developers on the npm registry—including React itself! How you do this depends on your existing setup:
+
+          If your app is already split into files that use import statements, try to use the setup you already have.
+          Check
+          whether writing
+          <div /> in your JS code causes a syntax error. If it causes a syntax error, you might need to transform your
+          JavaScript code with Babel, and enable the Babel React preset to use JSX.
+
+          If your app doesn’t have an existing setup for compiling JavaScript modules, set it up with Vite. The Vite
+          community maintains many integrations with backend frameworks, including Rails, Django, and Laravel. If your
+          backend framework is not listed, follow this guide to manually integrate Vite builds with your backend.
+
+          To check whether your setup works, run this command in your project folder:
+        </p>
+      </section>
+      <section id="section-3-2">
+        <h3>Step 2: Set up a modular JavaScript environment</h3>
+        <p>Of course, you don’t actually want to clear the existing HTML content!
+
+          Delete this code.
+
+          Instead, you probably want to render your React components in specific places in your HTML. Open your HTML
+          page
+          (or the server templates that generate it) and add a unique id attribute to any tag, for example:</p>
+      </section>
+    </section>
+  </div>
+  <div class="tracking">
+    <div class="flex">
+      <div class="container-maker">
+        <div class="marker"></div>
+      </div>
+      <h3 id="tracking-section-1">
+        Add React to an Existing Project
+      </h3>
+    </div>
+    <div class="flex">
+      <div class="container-maker">
+        <div class="marker"></div>
+      </div>
+      <h3 id="tracking-section-2">
+        Using React for an entire subroute of your existing website
+      </h3>
+    </div>
+    <div class="flex">
+      <div class="container-maker">
+        <div class="marker"></div>
+      </div>
+      <h3 id="tracking-section-3">
+        Add React to an Existing Project
+      </h3>
+    </div>
+    <div class="flex">
+      <div class="container-maker" name="sub-title">
+        <div class="marker-horizontal"></div>
+        <div class="marker-verticle"></div>
+      </div>
+      <h4 id="tracking-section-3-1">
+        Step 1: Set up a modular JavaScript environment
+      </h4>
+    </div>
+    <div class="flex">
+
+      <div class="container-maker">
+        <div class="marker"></div>
+      </div>
+      <h4 id="tracking-section-3-1">
+        Step :2 Set up a modular JavaScript environment
+      </h4>
+    </div>
+  </div>
+  <script src="./main.js"></script>
+</body>
+
+</html>
